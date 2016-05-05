@@ -1,0 +1,71 @@
+<?php
+
+namespace Efrag\Lib\BiblioMetrics\Metric;
+
+/**
+ * Class PaperMetric
+ * @package Efrag\Lib\BiblioMetrics\Metric
+ */
+abstract class PaperMetric
+{
+    /**
+     * Array of paper identifiers and number of direct citations a paper has received. The format of the array is
+     * expected to be ['paperId' => 'number of citations']
+     * @var array
+     */
+    protected $paperCitations;
+
+    /**
+     * Array of paper identifiers and metric scores for the provided papers. The format of the array is expected to be
+     * ['paperId' => 'score']
+     * @var array
+     */
+    protected $scores;
+
+    /**
+     * Setter method for the paperCitations property
+     * @param array $paperCitations
+     * @return $this
+     */
+    public function setPaperCitations(array $paperCitations)
+    {
+        $this->paperCitations = $paperCitations;
+
+        return $this;
+    }
+
+    /**
+     * Method that should be called to retrieve the scores for the provided papers. If the caller has not provided the
+     * complete list of required parameters this method will throw an exception.
+     *
+     * @return array
+     * @throws \Exception
+     */
+    public function getScores()
+    {
+        if (!$this->isInitialized()) {
+            throw new \Exception('Metric class has not been initialized properly.');
+        }
+
+        $this->scores = $this->generateScores();
+
+        return $this->scores;
+    }
+
+    /**
+     * This method should return true if the metric class has been initialized with all required parameters for it to
+     * be able to generate the scores for the individual papers. This method is overridden by all child classes since
+     * each of them might require different parameters to be available.
+     *
+     * @return bool
+     */
+    abstract protected function isInitialized();
+
+    /**
+     * This method should return a key => value array where the key is the identifier of the paper and the value is
+     * the score that each metric returns for the specific publication
+     *
+     * @return array
+     */
+    abstract protected function generateScores();
+}

@@ -1,6 +1,6 @@
 <?php
 
-namespace Efrag\Lib\BiblioMetrics\Tests;
+namespace Efrag\Lib\BiblioMetrics\Tests\Ranking\Method;
 
 use Efrag\Lib\BiblioMetrics\Ranking\Method\Ordinal;
 

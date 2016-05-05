@@ -1,6 +1,8 @@
 <?php
 
-namespace Efrag\Lib\BiblioMetrics\Ranking;
+namespace Efrag\Lib\BiblioMetrics\Ranking\Method;
+
+use Efrag\Lib\BiblioMetrics\Ranking\BaseRanking;
 
 /**
  * Class Ordinal

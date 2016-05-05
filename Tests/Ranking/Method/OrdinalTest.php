@@ -2,9 +2,9 @@
 
 namespace Efrag\Lib\BiblioMetrics\Tests;
 
-use Efrag\Lib\BiblioMetrics\Ranking\Ordinal;
+use Efrag\Lib\BiblioMetrics\Ranking\Method\Ordinal;
 
-class OrdinalRankingTest extends \PHPUnit_Framework_TestCase
+class OrdinalTest extends \PHPUnit_Framework_TestCase
 {
     public function OrdinalRankingCases()
     {

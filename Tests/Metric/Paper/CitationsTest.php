@@ -11,8 +11,8 @@ class CitationsTest extends \PHPUnit_Framework_TestCase
         $cases = [];
 
         $cases[] = [
-            ['a' => 1, 'b' => 15, 'c' => 3, 'd' => 8],
-            ['a' => 1, 'b' => 15, 'c' => 3, 'd' => 8],
+            ['a' => ['b'], 'b' => ['c', 'd'], 'c' => [], 'd' => []],
+            ['a' => 1, 'b' => 2, 'c' => 0, 'd' => 0],
         ];
 
         return $cases;

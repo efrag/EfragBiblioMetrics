@@ -23,6 +23,12 @@ class Citations extends PaperMetric
      */
     protected function generateScores()
     {
-        return $this->paperCitations;
+        $scores = [];
+
+        foreach ($this->paperCitations as $paperId => $citations) {
+            $scores[$paperId] = count($citations);
+        }
+
+        return $scores;
     }
 }

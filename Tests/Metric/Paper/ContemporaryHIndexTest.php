@@ -2,10 +2,9 @@
 
 namespace Efrag\Lib\BiblioMetrics\Tests\Metric\Paper;
 
-use Efrag\Lib\BiblioMetrics\Metric\Paper\Citations;
-use Efrag\Lib\BiblioMetrics\Metric\Paper\ContemporaryHIndex;
+use Efrag\Lib\BiblioMetrics\Metric\Paper\ContemporaryHIndexScore;
 
-class ContemporaryHIndexTest extends \PHPUnit_Framework_TestCase
+class ContemporaryHIndexScoreTest extends \PHPUnit_Framework_TestCase
 {
     public function ContemporaryHIndexCases()
     {
@@ -26,7 +25,7 @@ class ContemporaryHIndexTest extends \PHPUnit_Framework_TestCase
      */
     public function testContemporaryHIndex($gama, $paperCitations, $paperAge, $paperScores)
     {
-        $metric = new ContemporaryHIndex();
+        $metric = new ContemporaryHIndexScore();
         $scores = $metric
             ->setPaperCitations($paperCitations)
             ->setDecimalPlaces(4)
@@ -42,7 +41,7 @@ class ContemporaryHIndexTest extends \PHPUnit_Framework_TestCase
      */
     public function testNotInitializedPaperAge()
     {
-        $metric = new ContemporaryHIndex();
+        $metric = new ContemporaryHIndexScore();
         $metric->setPaperCitations([])->getScores();
     }
 
@@ -51,7 +50,7 @@ class ContemporaryHIndexTest extends \PHPUnit_Framework_TestCase
      */
     public function testNotInitializedPaperCitations()
     {
-        $metric = new ContemporaryHIndex();
+        $metric = new ContemporaryHIndexScore();
         $metric->setPaperAge([])->getScores();
     }
 

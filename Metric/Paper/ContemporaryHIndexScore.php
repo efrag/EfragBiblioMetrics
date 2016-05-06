@@ -4,7 +4,11 @@ namespace Efrag\Lib\BiblioMetrics\Metric\Paper;
 
 use Efrag\Lib\BiblioMetrics\Metric\PaperMetric;
 
-class ContemporaryHIndex extends PaperMetric
+/**
+ * Class ContemporaryHIndexScore
+ * @package Efrag\Lib\BiblioMetrics\Metric\Paper
+ */
+class ContemporaryHIndexScore extends PaperMetric
 {
     /**
      * @var integer

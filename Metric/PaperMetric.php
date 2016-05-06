@@ -23,6 +23,12 @@ abstract class PaperMetric
     protected $scores;
 
     /**
+     * Default number of decimal places to consider when calculating the scores for the metrics
+     * @var int
+     */
+    protected $decimalPlaces = 4;
+
+    /**
      * Setter method for the paperCitations property
      * @param array $paperCitations
      * @return $this
@@ -30,6 +36,23 @@ abstract class PaperMetric
     public function setPaperCitations(array $paperCitations)
     {
         $this->paperCitations = $paperCitations;
+
+        return $this;
+    }
+
+    /**
+     * Setter method for the number of decimal places to be considered when calculating the resulting scores for the
+     * papers included in the set
+     * @param $decimalPlaces
+     * @return $this
+     */
+    public function setDecimalPlaces($decimalPlaces)
+    {
+        if (!is_integer($decimalPlaces)) {
+            throw new \InvalidArgumentException('Invalid value provided for the decimal places to be considered');
+        }
+
+        $this->decimalPlaces = (int) $decimalPlaces;
 
         return $this;
     }

@@ -59,7 +59,7 @@ class ContemporaryHIndexScoreTest extends \PHPUnit_Framework_TestCase
      */
     public function testSettingInvalidDecimalPlaces()
     {
-        $metric = new ContemporaryHIndex();
+        $metric = new ContemporaryHIndexScore();
         $metric->setDecimalPlaces('test');
     }
 
@@ -68,7 +68,7 @@ class ContemporaryHIndexScoreTest extends \PHPUnit_Framework_TestCase
      */
     public function testSettingInvalidGama()
     {
-        $metric = new ContemporaryHIndex();
+        $metric = new ContemporaryHIndexScore();
         $metric->setGama('test');
     }
 }

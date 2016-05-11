@@ -14,7 +14,8 @@ class SceasTwoScore extends SceasMetric
     protected $factorD = 0.85;
 
     /**
-     * @param $factorD
+     * Setter for the FactorD property of the class
+     * @param int|float $factorD
      * @return $this
      */
     public function setFactorD($factorD)
@@ -28,6 +29,15 @@ class SceasTwoScore extends SceasMetric
         $this->factorD = round($factorD, $this->decimalPlaces);
 
         return $this;
+    }
+
+    /**
+     * Getter method for the FactorD property of the class
+     * @return float
+     */
+    public function getFactorD()
+    {
+        return $this->factorD;
     }
 
     /**

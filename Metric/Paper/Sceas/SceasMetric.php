@@ -131,4 +131,29 @@ abstract class SceasMetric extends PaperMetric
             (count($this->paperCitations) === count($this->paperReferences))
         );
     }
+
+    /**
+     * Method that calculates the summed score of a paper participating in the Paper-Citation graph based on the
+     * previous scores of all papers directly citing the current paper. The score uses the formula defined from the
+     * SceasOne metric
+     *
+     * @param string|int    $paper      The current paper index e.g. 5 or paper5
+     * @param array         $prevScore  The array that holds the previous SceasOne values
+     *
+     * @return float|int
+     */
+    protected function sumScore($paper, $prevScore)
+    {
+        $score = 0;
+
+        foreach ($this->paperCitations[$paper] as $direct) {
+            $numReferences = count($this->paperReferences[$direct]);
+
+            if ($numReferences > 0) {
+                $score += (($prevScore[$direct] + $this->factorB) / $numReferences) * (1/$this->factorA);
+            }
+        }
+
+        return $score;
+    }
 }

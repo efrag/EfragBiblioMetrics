@@ -26,7 +26,7 @@ abstract class PaperMetric
      * Default number of decimal places to consider when calculating the scores for the metrics
      * @var int
      */
-    protected $decimalPlaces = 4;
+    protected $decimalPlaces = 5;
 
     /**
      * Setter method for the paperCitations property

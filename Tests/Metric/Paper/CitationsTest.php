@@ -26,7 +26,7 @@ class CitationsTest extends \PHPUnit_Framework_TestCase
         $metric = new Citations();
         $scores = $metric->setPaperCitations($paperCitations)->getScores();
 
-        $this->assertEquals($scores, $paperScores, 'The paper scores do not match');
+        $this->assertEquals($paperScores, $scores, 'The paper scores do not match');
     }
 
     /**

@@ -33,7 +33,7 @@ class ContemporaryHIndexScoreTest extends \PHPUnit_Framework_TestCase
             ->setPaperAge($paperAge)
             ->getScores();
 
-        $this->assertEquals($scores, $paperScores, 'The paper scores do not match');
+        $this->assertEquals($paperScores, $scores, 'The paper scores do not match');
     }
 
     /**

@@ -139,6 +139,6 @@ class SceasOneScoreTest extends \PHPUnit_Framework_TestCase
             ->setPaperReferences($this->graphA['references'])
             ->getScores();
 
-        $this->assertEquals($scores, $expected);
+        $this->assertEquals($expected, $scores);
     }
 }

@@ -37,12 +37,12 @@ class SceasOneScoreTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException \InvalidArgumentException
+     * @expectedException \Exception
      */
     public function testNotInitializedMissingArgument()
     {
         $metric = new SceasOneScore();
-        $metric->setMaxIterations('test');
+        $metric->setPaperCitations([])->getScores();
     }
 
     /**

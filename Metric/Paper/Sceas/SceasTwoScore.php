@@ -13,6 +13,11 @@ class SceasTwoScore extends SceasMetric
      */
     protected $factorD = 0.85;
 
+    public function __construct()
+    {
+        $this->factorB = 0;
+    }
+
     /**
      * Setter for the FactorD property of the class
      * @param int|float $factorD

@@ -2,8 +2,9 @@
   "name": "efrag/bibliometrics",
   "description": "A library for calculating metrics for citation analysis",
   "keywords": [],
-  "type": "",
-  "license": "",
+  "type": "library",
+  "license": "GPLv3",
+  "homepage": "https://github.com/efrag/EfragBiblioMetrics",
   "authors": [
     {
       "name": "Eleni Fragkiadaki",

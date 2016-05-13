@@ -39,20 +39,16 @@ abstract class MSO
 
     /**
      * A key => value array whose keys are the papers that participate in a Paper-Citation graph and for each paper it
-     * holds an array with as many elements as the depth at which we are calculating the MSO table for. For each depth
-     * it holds an array of the unique papers that reference the current paper based on the criteria we have specified
-     * for each generation i.e.
+     * holds an array with the distinct papers that cite directly or indirectly each paper i.e.
      *
      * [
-     *      'paper1' => [1 => ['paper2', 'paper3'], 2 => ['paper4'], 3 => []],
-     *      'paper2' => [1 => [], 2 => [], 3 => []],
-     *      'paper3' => [1 => ['paper4'], 2 => [], 3 => []],
-     *      'paper4' => [1 => [], 2 => [], 3 => []],
+     *      'paper1' => ['paper2', 'paper3'],
+     *      'paper2' => ['paper3'],
      * ]
      *
      * @var array
      */
-    protected $distinct;
+    protected $distinct = [];
 
     /**
      * The depth at which we wish to calculate the MSO table for the specified Paper-Citation graph
@@ -76,6 +72,7 @@ abstract class MSO
     public function setPaperCitations(array $paperCitations)
     {
         $this->paperCitations = $paperCitations;
+        $this->distinct = $paperCitations;
 
         return $this;
     }

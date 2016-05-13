@@ -33,7 +33,9 @@ class MSOHmDefinition extends MSO
     }
 
     /**
-     * In MSOSimple all citations count for each of the papers. Self-citations and cycles do participate in the counts
+     * In MSOHmDefinition all citations count for each of the papers. Self-citations and cycles do participate in the
+     * counts
+     *
      * @param int $depth
      * @param array $prevGen
      * @return array

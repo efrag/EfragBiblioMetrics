@@ -2,10 +2,10 @@
 
 namespace Efrag\Lib\BiblioMetrics\Tests\MSO;
 
-use Efrag\Lib\BiblioMetrics\MSO\MSOSimple;
+use Efrag\Lib\BiblioMetrics\MSO\MSOHmDefinition;
 use Efrag\Lib\BiblioMetrics\Tests\Fixtures\GraphA;
 
-class MSOSimpleTest extends \PHPUnit_Framework_TestCase
+class MSOHmDefinitionTest extends \PHPUnit_Framework_TestCase
 {
     use GraphA;
 
@@ -14,7 +14,7 @@ class MSOSimpleTest extends \PHPUnit_Framework_TestCase
      */
     public function testSettingInvalidDepth()
     {
-        $mso = new MSOSimple();
+        $mso = new MSOHmDefinition();
         $mso->setDepth('test');
     }
 
@@ -37,7 +37,7 @@ class MSOSimpleTest extends \PHPUnit_Framework_TestCase
      */
     public function testSettingDepth($depth, $expected)
     {
-        $mso = new MSOSimple();
+        $mso = new MSOHmDefinition();
         $setDepth = $mso->setDepth($depth)->getDepth();
 
         $this->assertEquals($expected, $setDepth, 'Not matching Depth values');
@@ -48,13 +48,13 @@ class MSOSimpleTest extends \PHPUnit_Framework_TestCase
      */
     public function testNotInitializedClass()
     {
-        $mso = new MSOSimple();
+        $mso = new MSOHmDefinition();
         $table = $mso->setDepth(3)->getMSO();
     }
 
     public function testMSOTable()
     {
-        $mso = new MSOSimple();
+        $mso = new MSOHmDefinition();
         $table = $mso->setPaperCitations($this->graphA['citations'])->setDepth(3)->getMSO();
 
         $expected = [

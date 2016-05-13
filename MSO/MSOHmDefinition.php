@@ -19,10 +19,10 @@
 namespace Efrag\Lib\BiblioMetrics\MSO;
 
 /**
- * Class MSOSimple
+ * Class MSOHmDefinition
  * @package Efrag\Lib\BiblioMetrics\MSO
  */
-class MSOSimple extends MSO
+class MSOHmDefinition extends MSO
 {
     /**
      * @return bool

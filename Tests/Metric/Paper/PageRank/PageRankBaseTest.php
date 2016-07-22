@@ -20,10 +20,12 @@ namespace Efrag\Lib\BiblioMetrics\Tests\Metric\Paper\PageRank;
 
 use Efrag\Lib\BiblioMetrics\Metric\Paper\PageRank\PageRankBase;
 use Efrag\Lib\BiblioMetrics\Tests\Fixtures\GraphA;
+use Efrag\Lib\BiblioMetrics\Tests\Fixtures\GraphB;
 
 class PageRankBaseTest extends \PHPUnit_Framework_TestCase
 {
     use GraphA;
+    use GraphB;
 
     /**
      * DataProvider method to retrieve the cases for testing setting the max iterations for the algorithm. Integer
@@ -142,7 +144,7 @@ class PageRankBaseTest extends \PHPUnit_Framework_TestCase
         $metric->setEpsilon('test');
     }
 
-    public function testPageRankBase()
+    public function testPageRankBaseForGraphA()
     {
         $expected = [
             1 => 3.6609898896725,
@@ -161,6 +163,42 @@ class PageRankBaseTest extends \PHPUnit_Framework_TestCase
         $scores = $metric
             ->setPaperCitations($this->graphA['citations'])
             ->setPaperReferences($this->graphA['references'])
+            ->getScores();
+
+        $this->assertEquals($expected, $scores, 'The PageRankBase scores do not match');
+    }
+
+    public function testPageRankBaseForGraphB()
+    {
+        $expected = [
+            1 => 2.1150459375,
+            2 => 1.43169375,
+            3 => 0.2775,
+            4 => 0.602625,
+            5 => 1.507875,
+            6 => 0.15,
+            7 => 0.5325,
+            8 => 0.15,
+            9 => 1.2975,
+            10 => 0.15,
+            11 => 0.15,
+            12 => 0.15,
+            13 => 0.15,
+            14 => 0.15,
+            15 => 0.15,
+            16 => 0.15,
+            17 => 0.15,
+            18 => 0.15,
+            19 => 0.15,
+            20 => 0.15,
+            21 => 0.15,
+            22 => 0.15,
+        ];
+
+        $metric = new PageRankBase();
+        $scores = $metric
+            ->setPaperCitations($this->graphB['citations'])
+            ->setPaperReferences($this->graphB['references'])
             ->getScores();
 
         $this->assertEquals($expected, $scores, 'The PageRankBase scores do not match');

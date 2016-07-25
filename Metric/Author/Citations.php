@@ -20,6 +20,10 @@ namespace Efrag\Lib\BiblioMetrics\Metric\Author;
 
 use Efrag\Lib\BiblioMetrics\Metric\AuthorMetric;
 
+/**
+ * Class Citations
+ * @package Efrag\Lib\BiblioMetrics\Metric\Author
+ */
 class Citations extends AuthorMetric
 {
 

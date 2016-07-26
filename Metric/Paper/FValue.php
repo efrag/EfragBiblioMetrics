@@ -69,7 +69,7 @@ class FValue extends PaperMetric
      * Method that calculates the reducing factor for the provided Paper-Citation graph. In this particular case we are
      * using the Hm Generation definition for calculating the citations received by each paper in each generation.
      *
-     * @return $this
+     * @return float
      * @throws \Exception
      */
     protected function calculateReducingFactor()

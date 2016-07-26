@@ -136,7 +136,7 @@ abstract class SceasMetric extends PaperMetric
     /**
      * @inheritdoc
      */
-    protected function isInitialized()
+    public function isInitialized()
     {
         return (
             isset($this->paperCitations) &&

@@ -64,7 +64,7 @@ class SceasTwoScore extends SceasMetric
     /**
      * @inheritdoc
      */
-    protected function isInitialized()
+    public function isInitialized()
     {
         return parent::isInitialized() && isset($this->factorD);
     }

@@ -72,7 +72,7 @@ class ContemporaryHIndexScore extends PaperMetric
     /**
      * @inheritdoc
      */
-    protected function isInitialized()
+    public function isInitialized()
     {
         return (isset($this->paperCitations) && isset($this->gama) && isset($this->paperAge));
     }

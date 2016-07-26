@@ -117,7 +117,7 @@ abstract class AuthorMetric
      *
      * @return bool
      */
-    abstract protected function isInitialized();
+    abstract public function isInitialized();
 
     /**
      * This method should return a key => value array where the key is the identifier of the author and the value is

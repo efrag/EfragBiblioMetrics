@@ -187,7 +187,7 @@ abstract class PageRankMetric extends PaperMetric
      *
      * @return bool
      */
-    protected function isInitialized()
+    public function isInitialized()
     {
         return (
             isset($this->paperCitations) &&

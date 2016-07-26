@@ -26,7 +26,7 @@ class AverageCitations extends AuthorMetric
     /**
      * @return bool
      */
-    protected function isInitialized()
+    public function isInitialized()
     {
         return isset($this->paperCitations) && isset($this->authorPapers);
     }

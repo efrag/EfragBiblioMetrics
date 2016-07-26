@@ -47,7 +47,7 @@ class HIndex extends AuthorMetric
 
             // Create an array that has as many elements as the papers this author has written. The h-index has
             // as an upper limit the number of papers an author has written anyway
-            $citationCounts = array_fill(0, $numPapers, 0);
+            $citationCounts = array_fill(0, $numPapers + 1, 0);
 
             // loop through the papers the author has written and add it to the citationCounts array. If an author
             // has written three papers then he will have an array with keys 0,1,2,3 and if a paper has 2 citations

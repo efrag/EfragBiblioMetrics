@@ -16,7 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace Efrag\Lib\BiblioMetrics\Metric\Author\Sceas;
+namespace Efrag\Lib\BiblioMetrics\Metric\Author;
 
 use Efrag\Lib\BiblioMetrics\Metric\AuthorMetric;
 

@@ -18,7 +18,8 @@
 
 namespace Efrag\Lib\BiblioMetrics\Tests\Metric\Author;
 
-use Efrag\Lib\BiblioMetrics\Metric\Author\Sceas\SceasOne;
+use Efrag\Lib\BiblioMetrics\Metric\Author\SceasMetric;
+use Efrag\Lib\BiblioMetrics\Metric\Paper\Sceas\SceasOneScore;
 use Efrag\Lib\BiblioMetrics\Tests\Fixtures\GraphC;
 
 /**
@@ -34,7 +35,7 @@ class SceasOneTest extends \PHPUnit_Framework_TestCase
      */
     public function testSettingInvalidTopPapers()
     {
-        $metric = new SceasOne();
+        $metric = new SceasMetric();
         $metric->setTopPapers('test');
     }
 
@@ -74,15 +75,21 @@ class SceasOneTest extends \PHPUnit_Framework_TestCase
      */
     public function testScoresGraphC($topPapers, $expectedValues)
     {
-        $metric = new SceasOne();
+        $paperMetric = new SceasOneScore();
+        $paperScores = $paperMetric
+            ->setPaperReferences($this->graphC['references'])
+            ->setPaperCitations($this->graphC['citations'])
+            ->setMaxIterations(30000)
+            ->setFactorA(2.71828)
+            ->setFactorB(1)
+            ->getScores();
+
+        $metric = new SceasMetric();
         $scores = $metric
             ->setPaperCitations($this->graphC['citations'])
             ->setAuthorPapers($this->graphC['author_papers'])
-            ->setPaperReferences($this->graphC['references'])
-            ->setMaxIterations(30000)
             ->setTopPapers($topPapers)
-            ->setFactorA(2.71828)
-            ->setFactorB(1)
+            ->setPaperScores($paperScores)
             ->getScores();
 
         $this->assertEquals($expectedValues, $scores, 'The scores do not match the expected values');

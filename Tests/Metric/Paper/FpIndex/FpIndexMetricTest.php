@@ -63,7 +63,7 @@ class FpIndexMetricTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @expectedException \Exception
-     * @expectedExceptionMessage Metric class has not been initialized properly.
+     * @expectedExceptionMessage Paper metric class has not been initialized properly.
      */
     public function testInitializedPaperYear()
     {
@@ -76,7 +76,7 @@ class FpIndexMetricTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @expectedException \Exception
-     * @expectedExceptionMessage Metric class has not been initialized properly.
+     * @expectedExceptionMessage Paper metric class has not been initialized properly.
      */
     public function testInitializedPaperCitations()
     {
@@ -93,7 +93,7 @@ class FpIndexMetricTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @expectedException \Exception
-     * @expectedExceptionMessage Metric class has not been initialized properly.
+     * @expectedExceptionMessage Paper metric class has not been initialized properly.
      */
     public function testInitializedMSOGs()
     {

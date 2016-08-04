@@ -19,6 +19,7 @@
 namespace Efrag\Lib\BiblioMetrics\Tests\Metric\Author;
 
 use Efrag\Lib\BiblioMetrics\Metric\Author\ContemporaryHIndex;
+use Efrag\Lib\BiblioMetrics\Metric\Paper\ContemporaryHIndexScore;
 use Efrag\Lib\BiblioMetrics\Tests\Fixtures\GraphC;
 
 /**
@@ -55,13 +56,18 @@ class ContemporaryHIndexTest extends \PHPUnit_Framework_TestCase
      */
     public function testScoresGraphC($gama, $paperCitations, $paperAge, $authorPapers, $authorScores)
     {
+        $paperMetric = new ContemporaryHIndexScore();
+        $paperScores = $paperMetric
+            ->setGama($gama)
+            ->setPaperCitations($paperCitations)
+            ->setPaperAge($paperAge)
+            ->getScores();
 
         $metric = new ContemporaryHIndex();
         $scores = $metric
-            ->setGama($gama)
+            ->setPaperScores($paperScores)
             ->setPaperCitations($paperCitations)
             ->setAuthorPapers($authorPapers)
-            ->setPaperAge($paperAge)
             ->getScores();
 
         $this->assertEquals($authorScores, $scores, 'The scores do not match the expected values');

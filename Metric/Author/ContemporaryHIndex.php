@@ -27,49 +27,22 @@ use Efrag\Lib\BiblioMetrics\Metric\Paper\ContemporaryHIndexScore;
  */
 class ContemporaryHIndex extends AuthorMetric
 {
-
     /**
-     * @var ContemporaryHIndexScore
+     * This represents an array with as many entries as papers in the Paper-Citation graph. The keys of the array
+     * are the paper identifiers and the values the calculated Contemporary h-index score for each of the papers
+     * @var array
      */
-    protected $contHIndexScore;
-
-    public function __construct()
-    {
-        $this->contHIndexScore = new ContemporaryHIndexScore();
-    }
+    protected $paperScores;
 
     /**
-     * @param $gama
+     * Setter method that passes an array of paper scores
+     *
+     * @param array $paperScores
      * @return $this
      */
-    public function setGama($gama)
+    public function setPaperScores(array $paperScores)
     {
-        $this->contHIndexScore->setGama($gama);
-
-        return $this;
-    }
-
-    /**
-     * @param array $paperAge
-     * @return $this
-     */
-    public function setPaperAge(array $paperAge)
-    {
-        $this->contHIndexScore->setPaperAge($paperAge);
-
-        return $this;
-    }
-
-    /**
-     * Setter method for the paperCitations property
-     * @param array $paperCitations
-     * @return $this
-     */
-    public function setPaperCitations(array $paperCitations)
-    {
-        $this->paperCitations = $paperCitations;
-
-        $this->contHIndexScore->setPaperCitations($paperCitations);
+        $this->paperScores = $paperScores;
 
         return $this;
     }
@@ -79,7 +52,11 @@ class ContemporaryHIndex extends AuthorMetric
      */
     public function isInitialized()
     {
-        return isset($this->paperCitations) && isset($this->authorPapers) && $this->contHIndexScore->isInitialized();
+        return
+            isset($this->paperCitations) &&
+            isset($this->authorPapers) &&
+            isset($this->paperScores) &&
+            count($this->paperCitations) == count($this->paperScores);
     }
 
     /**
@@ -88,8 +65,6 @@ class ContemporaryHIndex extends AuthorMetric
     protected function generateScores()
     {
         $authorScores = [];
-
-        $paperScores = $this->contHIndexScore->getScores();
 
         foreach ($this->authorPapers as $authorId => $papers) {
             $numPapers = count($papers);
@@ -100,7 +75,7 @@ class ContemporaryHIndex extends AuthorMetric
             $scores = [];
             $distinctScores = [];
             foreach ($papers as $paperId) {
-                $score = $paperScores[$paperId];
+                $score = $this->paperScores[$paperId];
 
                 $scores[] = $score;
                 if (!in_array($score, $distinctScores)) {

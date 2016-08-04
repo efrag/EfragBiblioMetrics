@@ -102,7 +102,7 @@ abstract class AuthorMetric
     public function getScores()
     {
         if (!$this->isInitialized()) {
-            throw new \Exception('Metric class has not been initialized properly.');
+            throw new \Exception('Author metric class has not been initialized properly.');
         }
 
         $this->scores = $this->generateScores();

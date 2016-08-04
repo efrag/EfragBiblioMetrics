@@ -24,30 +24,17 @@ use Efrag\Lib\BiblioMetrics\Metric\AuthorMetric;
  * Class SceasMetric
  * @package Efrag\Lib\BiblioMetrics\Metric\Author\Sceas
  */
-abstract class SceasMetric extends AuthorMetric
+class SceasMetric extends AuthorMetric
 {
-
-    /**
-     * @var \Efrag\Lib\BiblioMetrics\Metric\Paper\Sceas\SceasMetric
-     */
-    protected $sceasPaperMetric;
-
     /**
      * @var integer
      */
     protected $topPapers = 25;
 
-    public function __construct()
-    {
-        $this->sceasPaperMetric = $this->setSceasPaperMetric();
-    }
-
     /**
-     * This method needs to be implemented by all classes that inherit this one and it should set the Sceas Paper Metric
-     * class to be used in the calculations
-     * @return \Efrag\Lib\BiblioMetrics\Metric\Paper\Sceas\SceasMetric
+     * @var array
      */
-    abstract protected function setSceasPaperMetric();
+    protected $paperScores;
 
     /**
      * This method provides a setter for the number of top papers that we should consider in the calculations of Sceas
@@ -66,58 +53,12 @@ abstract class SceasMetric extends AuthorMetric
     }
 
     /**
-     * @param $factorA
+     * @param array $paperScores
      * @return $this
      */
-    public function setFactorA($factorA)
+    public function setPaperScores(array $paperScores)
     {
-        $this->sceasPaperMetric->setFactorA($factorA);
-
-        return $this;
-    }
-
-    /**
-     * @param $factorB
-     * @return $this
-     */
-    public function setFactorB($factorB)
-    {
-        $this->sceasPaperMetric->setFactorB($factorB);
-
-        return $this;
-    }
-
-    /**
-     * @param $iterations
-     * @return $this
-     */
-    public function setMaxIterations($iterations)
-    {
-        $this->sceasPaperMetric->setMaxIterations($iterations);
-
-        return $this;
-    }
-
-    /**
-     * @param $paperReferences
-     * @return $this
-     */
-    public function setPaperReferences($paperReferences)
-    {
-        $this->sceasPaperMetric->setPaperReferences($paperReferences);
-
-        return $this;
-    }
-
-    /**
-     * @param array $paperCitations
-     * @return $this
-     */
-    public function setPaperCitations(array $paperCitations)
-    {
-        parent::setPaperCitations($paperCitations);
-
-        $this->sceasPaperMetric->setPaperCitations($paperCitations);
+        $this->paperScores = $paperScores;
 
         return $this;
     }
@@ -131,7 +72,8 @@ abstract class SceasMetric extends AuthorMetric
             isset($this->paperCitations) &&
             isset($this->authorPapers) &&
             isset($this->topPapers) &&
-            $this->sceasPaperMetric->isInitialized()
+            isset($this->paperScores) &&
+            count($this->paperCitations) == count($this->paperScores)
             ;
     }
 
@@ -140,8 +82,6 @@ abstract class SceasMetric extends AuthorMetric
      */
     protected function generateScores()
     {
-        $paperScores = $this->sceasPaperMetric->getScores();
-
         $scores = array();
 
         foreach ($this->authorPapers as $authorId => $papers) {
@@ -151,7 +91,7 @@ abstract class SceasMetric extends AuthorMetric
                 $authorPaperScores = [];
 
                 foreach ($papers as $paperId) {
-                    $authorPaperScores[] = $paperScores[$paperId];
+                    $authorPaperScores[] = $this->paperScores[$paperId];
                 }
                 rsort($authorPaperScores);
 
@@ -162,7 +102,7 @@ abstract class SceasMetric extends AuthorMetric
                 $scores[$authorId] = $authorValue / $this->topPapers;
             } else {
                 foreach ($papers as $paperId) {
-                    $authorValue += $paperScores[$paperId];
+                    $authorValue += $this->paperScores[$paperId];
                 }
 
                 $scores[$authorId] = $authorValue / count($papers);

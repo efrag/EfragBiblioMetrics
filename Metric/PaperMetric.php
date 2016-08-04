@@ -83,7 +83,7 @@ abstract class PaperMetric
     public function getScores()
     {
         if (!$this->isInitialized()) {
-            throw new \Exception('Metric class has not been initialized properly.');
+            throw new \Exception('Paper metric class has not been initialized properly.');
         }
 
         $this->scores = $this->generateScores();

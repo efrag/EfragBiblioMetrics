@@ -16,17 +16,17 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace Efrag\Lib\BiblioMetrics\Tests\Metric\Author;
+namespace Efrag\Lib\BiblioMetrics\Tests\Metric\Author\Sceas;
 
 use Efrag\Lib\BiblioMetrics\Metric\Author\SceasMetric;
-use Efrag\Lib\BiblioMetrics\Metric\Paper\Sceas\SceasOneScore;
+use Efrag\Lib\BiblioMetrics\Metric\Paper\Sceas\SceasTwoScore;
 use Efrag\Lib\BiblioMetrics\Tests\Fixtures\GraphC;
 
 /**
- * Class SceasOneTest
- * @package Efrag\Lib\BiblioMetrics\Tests\Metric\Author
+ * Class SceasTwoTest
+ * @package Efrag\Lib\BiblioMetrics\Tests\Metric\Author\Sceas
  */
-class SceasOneTest extends \PHPUnit_Framework_TestCase
+class SceasTwoTest extends \PHPUnit_Framework_TestCase
 {
     use GraphC;
 
@@ -47,11 +47,11 @@ class SceasOneTest extends \PHPUnit_Framework_TestCase
         $cases[] = [
             25,
             [
-                1 => 0.64438085001005396,
-                2 => 0.55464599833037465,
-                3 => 0.1564604292015507,
-                4 => 0.28544144329133631,
-                5 => 0
+                1 => 0.76320795922642,
+                2 => 0.67594005413659,
+                3 => 0.29797917889447,
+                4 => 0.41413633886713,
+                5 => 0.15
             ]
         ];
 
@@ -59,11 +59,11 @@ class SceasOneTest extends \PHPUnit_Framework_TestCase
         $cases[] = [
             1,
             [
-                1 => 1.3813230170902,
-                2 => 1.3813230170902,
-                3 => 0.28544144329134,
-                4 => 0.28544144329134,
-                5 => 0,
+                1 => 1.4502202842304,
+                2 => 1.4502202842304,
+                3 => 0.41413633886713,
+                4 => 0.41413633886713,
+                5 => 0.15,
             ]
         ];
 
@@ -75,7 +75,7 @@ class SceasOneTest extends \PHPUnit_Framework_TestCase
      */
     public function testScoresGraphC($topPapers, $expectedValues)
     {
-        $paperMetric = new SceasOneScore();
+        $paperMetric = new SceasTwoScore();
         $paperScores = $paperMetric
             ->setPaperReferences($this->graphC['references'])
             ->setPaperCitations($this->graphC['citations'])

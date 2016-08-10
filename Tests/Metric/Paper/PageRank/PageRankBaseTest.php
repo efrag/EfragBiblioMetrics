@@ -21,11 +21,17 @@ namespace Efrag\Lib\BiblioMetrics\Tests\Metric\Paper\PageRank;
 use Efrag\Lib\BiblioMetrics\Metric\Paper\PageRank\PageRankBase;
 use Efrag\Lib\BiblioMetrics\Tests\Fixtures\GraphA;
 use Efrag\Lib\BiblioMetrics\Tests\Fixtures\GraphB;
+use Efrag\Lib\BiblioMetrics\Tests\Fixtures\GraphC;
 
+/**
+ * Class PageRankBaseTest
+ * @package Efrag\Lib\BiblioMetrics\Tests\Metric\Paper\PageRank
+ */
 class PageRankBaseTest extends \PHPUnit_Framework_TestCase
 {
     use GraphA;
     use GraphB;
+    use GraphC;
 
     /**
      * DataProvider method to retrieve the cases for testing setting the max iterations for the algorithm. Integer
@@ -196,9 +202,27 @@ class PageRankBaseTest extends \PHPUnit_Framework_TestCase
         ];
 
         $metric = new PageRankBase();
+        $scores = $metric->setPaperCitations($this->graphB['citations'])->setPaperReferences($this->graphB['references'])->getScores();
+
+        $this->assertEquals($expected, $scores, 'The PageRankBase scores do not match');
+    }
+
+    public function testPageRankBaseForGraphC()
+    {
+        $expected = [
+            1 => 0.83324062500000018,
+            2 => 0.21375000000000002,
+            3 => 0.29503125000000008,
+            4 => 0.29503125000000008,
+            5 => 0.15000000000000002,
+            6 => 0.34125000000000005,
+            7 => 0.15000000000000002,
+        ];
+
+        $metric = new PageRankBase();
         $scores = $metric
-            ->setPaperCitations($this->graphB['citations'])
-            ->setPaperReferences($this->graphB['references'])
+            ->setPaperCitations($this->graphC['citations'])
+            ->setPaperReferences($this->graphC['references'])
             ->getScores();
 
         $this->assertEquals($expected, $scores, 'The PageRankBase scores do not match');

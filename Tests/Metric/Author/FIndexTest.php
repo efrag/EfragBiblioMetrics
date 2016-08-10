@@ -19,7 +19,6 @@
 namespace Efrag\Lib\BiblioMetrics\Tests\Metric\Author;
 
 use Efrag\Lib\BiblioMetrics\Metric\Author\FIndex;
-use Efrag\Lib\BiblioMetrics\Metric\Author\HIndex;
 use Efrag\Lib\BiblioMetrics\Metric\Paper\FValue;
 use Efrag\Lib\BiblioMetrics\Tests\Fixtures\GraphC;
 

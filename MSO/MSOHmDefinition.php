@@ -22,16 +22,8 @@ namespace Efrag\Lib\BiblioMetrics\MSO;
  * Class MSOHmDefinition
  * @package Efrag\Lib\BiblioMetrics\MSO
  */
-class MSOHmDefinition extends MSO
+class MSOHmDefinition extends MSOPaper
 {
-    /**
-     * @return bool
-     */
-    protected function isInitialized()
-    {
-        return (isset($this->paperCitations) && isset($this->depth));
-    }
-
     /**
      * In MSOHmDefinition all citations count for each of the papers. Self-citations and cycles do participate in the
      * counts

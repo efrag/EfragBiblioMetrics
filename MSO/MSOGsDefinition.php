@@ -22,16 +22,8 @@ namespace Efrag\Lib\BiblioMetrics\MSO;
  * Class MSOGsDefinition
  * @package Efrag\Lib\BiblioMetrics\MSO
  */
-class MSOGsDefinition extends MSO
+class MSOGsDefinition extends MSOPaper
 {
-    /**
-     * @return bool
-     */
-    protected function isInitialized()
-    {
-        return (isset($this->paperCitations) && isset($this->depth));
-    }
-
     /**
      * In MSOGsDefinition self-citations and citations from papers encountered in previous generations are not included.
      * Also only one citation is counted for in cases we have multiple citations of the same length originating from the

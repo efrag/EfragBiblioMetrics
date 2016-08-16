@@ -105,68 +105,17 @@ abstract class MSO
     }
 
     /**
-     * Method that initializes the MSO table for the current Paper-Citation graph. The table is a key => value array
-     * whose keys are the papers that participate in the Graph. For each paper an array of <depth> elements is created
-     * with each element being the total number of citations per generation i.e.
-     *
-     * [
-     *      'paper1' => [1 => 2, 2 => 1, 3 => 0],
-     *      'paper2' => [1 => 0, 2 => 0, 3 => 0],
-     *      'paper3' => [1 => 1, 2 => 0, 3 => 0],
-     *      'paper4' => [1 => 0, 2 => 0, 3 => 0],
-     * ]
-     *
-     * Papers 2 and 4 have received 0 citations in each generation, paper 1 has 2 1-gen citations and a 2-gen citation
-     * and finally paper 3 has 1 1-gen citation
-     *
-     * This method though is just used to initialize the structure rather than calculate the results.
-     *
-     * @return array
-     */
-    protected function initializeMSO()
-    {
-        $paperIds = array_keys($this->paperCitations);
-
-        $mso = array_fill_keys($paperIds, []);
-
-        foreach ($mso as $paperId => $gens) {
-            $mso[$paperId] = array_fill(1, $this->depth, 0);
-            $mso[$paperId][1] = count($this->paperCitations[$paperId]);
-        }
-
-        return $mso;
-    }
-
-    /**
-     * Method to calculate and retrieve the MSO table for a provided Paper-Citation graph. The method first checks
-     * whether it has been properly initialized with all required data, then it generates the initial MSO table and
-     * for each depth updates the corresponding values
-     *
-     * @return array
-     * @throws \Exception
-     */
-    public function getMSO()
-    {
-        if (!$this->isInitialized()) {
-            throw new \Exception('The MSO class has not been initialized properly');
-        }
-
-        $this->mso = $this->initializeMSO();
-
-        $prevGen = $this->paperCitations;
-
-        for ($i = 2; $i <= $this->depth; $i++) {
-            $prevGen = $this->findPath($i, $prevGen);
-        }
-
-        return $this->mso;
-    }
-
-    /**
      * Method to check whether the class has been properly initialized
      * @return boolean
      */
     abstract protected function isInitialized();
+
+    /**
+     * This method should be used to initialize the mso property of the class with a structure we are going to use
+     * to store the calculated results
+     * @return array
+     */
+    abstract protected function initializeMSO();
 
     /**
      * Method that for a particular depth calculates the number of citations received by each of the papers in the
@@ -177,4 +126,13 @@ abstract class MSO
      * @return array
      */
     abstract protected function findPath($depth, array $prevGen);
+
+    /**
+     * This method should be used to initialize, calculate and retrieve the MSO table for the provided Paper-Citation
+     * graph. It should check whether the class has been initialized correctly, it should initialize the MSO
+     * structure that we are going to use to store the results and then calculate and return the results.
+     * @return array
+     * @throws \Exception
+     */
+    abstract public function getMSO();
 }

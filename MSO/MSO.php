@@ -118,6 +118,13 @@ abstract class MSO
     abstract protected function initializeMSO();
 
     /**
+     * This method should be used to populate/calculate the first generation of citations to be used in the calculations
+     * for the different MSO tables.
+     * @return array
+     */
+    abstract protected function populateFirstGeneration();
+
+    /**
      * Method that for a particular depth calculates the number of citations received by each of the papers in the
      * Paper-Citation graph
      *
@@ -128,11 +135,27 @@ abstract class MSO
     abstract protected function findPath($depth, array $prevGen);
 
     /**
-     * This method should be used to initialize, calculate and retrieve the MSO table for the provided Paper-Citation
-     * graph. It should check whether the class has been initialized correctly, it should initialize the MSO
-     * structure that we are going to use to store the results and then calculate and return the results.
+     * Method to calculate and retrieve the MSO table for a provided Paper-Citation graph. The method first checks
+     * whether it has been properly initialized with all required data, then it generates the initial MSO table and
+     * for each depth updates the corresponding values
+     *
      * @return array
      * @throws \Exception
      */
-    abstract public function getMSO();
+    public function getMSO()
+    {
+        if (!$this->isInitialized()) {
+            throw new \Exception('The MSO class has not been initialized properly');
+        }
+
+        $this->mso = $this->initializeMSO();
+
+        $prevGen = $this->populateFirstGeneration();
+
+        for ($i = 2; $i <= $this->depth; $i++) {
+            $prevGen = $this->findPath($i, $prevGen);
+        }
+
+        return $this->mso;
+    }
 }

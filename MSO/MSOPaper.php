@@ -65,29 +65,11 @@ abstract class MSOPaper extends MSO
         return $mso;
     }
 
-
     /**
-     * Method to calculate and retrieve the MSO table for a provided Paper-Citation graph. The method first checks
-     * whether it has been properly initialized with all required data, then it generates the initial MSO table and
-     * for each depth updates the corresponding values
-     *
      * @return array
-     * @throws \Exception
      */
-    public function getMSO()
+    protected function populateFirstGeneration()
     {
-        if (!$this->isInitialized()) {
-            throw new \Exception('The MSO class has not been initialized properly');
-        }
-
-        $this->mso = $this->initializeMSO();
-
-        $prevGen = $this->paperCitations;
-
-        for ($i = 2; $i <= $this->depth; $i++) {
-            $prevGen = $this->findPath($i, $prevGen);
-        }
-
-        return $this->mso;
+        return $this->paperCitations;
     }
 }

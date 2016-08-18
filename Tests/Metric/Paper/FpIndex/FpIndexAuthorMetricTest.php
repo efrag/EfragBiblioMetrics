@@ -20,7 +20,6 @@ namespace Efrag\Lib\BiblioMetrics\Tests\Metric\Paper\FpIndex;
 
 use Efrag\Lib\BiblioMetrics\Metric\Paper\FpIndex\FpIndexAuthorMetric;
 use Efrag\Lib\BiblioMetrics\MSO\MSOAuthorGsDefinition;
-use Efrag\Lib\BiblioMetrics\MSO\MSOGsDefinition;
 use Efrag\Lib\BiblioMetrics\Tests\Fixtures\GraphC;
 use Efrag\Lib\BiblioMetrics\Utils\GraphProcessing;
 

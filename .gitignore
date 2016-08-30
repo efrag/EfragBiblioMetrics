@@ -3,3 +3,4 @@ vendor
 composer.lock
 Tests/Coverage/*
 !Tests/Coverage/.gitkeep
+*.bib~*
